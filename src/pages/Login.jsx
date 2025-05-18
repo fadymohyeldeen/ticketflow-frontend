@@ -1,8 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaSquarePhone } from "react-icons/fa6";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:5000/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const responseData = await response.text();
+
+      if (!response.ok) {
+        throw new Error(`err: ${response.status} ${responseData}`);
+      }
+      toast.success("Login successfull");
+    } catch {
+      toast.error("Login faild!");
+    }
+  };
+
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       <div className="absolute inset-0">
@@ -36,6 +64,8 @@ function Login() {
                 Your email
               </label>
               <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 name="email"
                 id="email"
@@ -52,10 +82,12 @@ function Login() {
                 Password
               </label>
               <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 name="password"
                 id="password"
-                placeholder="••••••••"
+                placeholder="•••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5"
                 required
               />
@@ -76,13 +108,14 @@ function Login() {
                 </label>
               </div>
               <Link
-                to="/forgot-password"
+                to="/login"
                 className="text-sm font-medium text-primary hover:underline"
               >
                 Forgot password?
               </Link>
             </div>
             <button
+              onClick={handleLogin}
               type="submit"
               className="w-full text-white bg-primary hover:bg-primary/90 focus:ring-4 focus:outline-none focus:ring-primary/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
@@ -91,7 +124,7 @@ function Login() {
             <p className="text-sm font-light text-gray-500 mt-4">
               Forgot password? {""}
               <Link
-                to="/register"
+                to="/login"
                 className="font-medium text-primary hover:underline"
               >
                 Reset Password

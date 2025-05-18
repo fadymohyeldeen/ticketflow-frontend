@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import TicketSubmit from "./pages/TicketSubmit";
 import TicketTrack from "./pages/TicketTrack";
 import Login from "./pages/Login";
+import { Toaster } from "react-hot-toast";
+
 const App = () => {
   return (
     <>
@@ -14,6 +16,7 @@ const App = () => {
         <Route path="/track-ticket" element={<TicketTrack />} />
         <Route path="/login" element={<Login />} />
       </Routes>
+      <Toaster />
     </>
   );
 };

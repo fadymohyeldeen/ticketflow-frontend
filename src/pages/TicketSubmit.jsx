@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaUser,
   FaEnvelope,
@@ -7,18 +7,85 @@ import {
   FaMessage,
   FaArrowRight,
 } from "react-icons/fa6";
+import toast from "react-hot-toast";
 
 function TicketSubmit() {
+  const [clientName, setClientName] = useState("");
+  const [clientEmail, setClientEmail] = useState("");
+  const [clientNumber, setClientNumber] = useState("");
+  const [ticketSubject, setTicketSubject] = useState("");
+  const [ticketMessage, setTicketMessage] = useState("");
+
+  const handleTicketSubmit = async (e) => {
+    e.preventDefault();
+
+    if (
+      !clientName.trim() ||
+      !clientEmail.trim() ||
+      !clientNumber.trim() ||
+      !ticketSubject.trim() ||
+      !ticketMessage.trim()
+    ) {
+      toast.error("Please fill all fields.");
+      return;
+    }
+
+    if (!/^[A-Za-z\s]+$/.test(clientName)) {
+      toast.error("Please enter a valid name.");
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientEmail)) {
+      toast.error("Please enter a valid email: name@example.com ");
+      return;
+    }
+
+    if (!/^(?:\+20|0020|0)?1(0|1|2|5)\d{8}$/.test(clientNumber)) {
+      toast.error("Please enter a valid phone number. ");
+      return;
+    }
+
+    if (!/^[A-Za-z\s]+$/.test(ticketSubject)) {
+      toast.error("Please enter a valid subject");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/ticket", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          clientName,
+          clientEmail,
+          clientNumber,
+          ticketSubject,
+          ticketMessage,
+        }),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        throw new Error(`err: ${response.status} ${result}`);
+      }
+      toast.success("Ticket submitted successfully!");
+      setClientName("");
+      setClientEmail("");
+      setClientNumber("");
+      setTicketSubject("");
+      setTicketMessage("");
+    } catch {
+      toast.error("Error submitting form, please try again.");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
-      {/* Background Pattern */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent"></div>
       </div>
 
       <div className="relative max-w-5xl mx-auto px-4 py-16">
-        {/* Header Section */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm text-primary mb-4">
             <FaMessage className="h-4 w-4" />
@@ -33,9 +100,7 @@ function TicketSubmit() {
           </p>
         </div>
 
-        {/* Form Container */}
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Contact Information Card */}
           <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 overflow-hidden">
             <div className="p-6 border-b border-gray-100">
               <div className="flex items-center gap-3">
@@ -60,6 +125,8 @@ function TicketSubmit() {
                     <FaUser className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
+                    value={clientName}
+                    onChange={(e) => setClientName(e.target.value)}
                     type="text"
                     id="clientName"
                     name="clientName"
@@ -81,6 +148,8 @@ function TicketSubmit() {
                     <FaEnvelope className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
+                    value={clientEmail}
+                    onChange={(e) => setClientEmail(e.target.value)}
                     type="email"
                     id="clientEmail"
                     name="clientEmail"
@@ -102,6 +171,8 @@ function TicketSubmit() {
                     <FaPhone className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
+                    value={clientNumber}
+                    onChange={(e) => setClientNumber(e.target.value)}
                     type="tel"
                     id="clientNumber"
                     name="clientNumber"
@@ -113,7 +184,6 @@ function TicketSubmit() {
             </div>
           </div>
 
-          {/* Ticket Details Card */}
           <div className="bg-white rounded-2xl shadow-sm ring-1 ring-gray-200 overflow-hidden">
             <div className="p-6 border-b border-gray-100">
               <div className="flex items-center gap-3">
@@ -138,6 +208,8 @@ function TicketSubmit() {
                     <FaTag className="h-5 w-5 text-gray-400" />
                   </div>
                   <input
+                    value={ticketSubject}
+                    onChange={(e) => setTicketSubject(e.target.value)}
                     type="text"
                     id="ticketSubject"
                     name="ticketSubject"
@@ -159,6 +231,8 @@ function TicketSubmit() {
                     <FaMessage className="h-5 w-5 text-gray-400" />
                   </div>
                   <textarea
+                    value={ticketMessage}
+                    onChange={(e) => setTicketMessage(e.target.value)}
                     id="ticketMessage"
                     name="ticketMessage"
                     rows="6"
@@ -171,9 +245,9 @@ function TicketSubmit() {
           </div>
         </div>
 
-        {/* Submit Button */}
         <div className="mt-8 text-center">
           <button
+            onClick={handleTicketSubmit}
             type="submit"
             className="group relative inline-flex items-center justify-center gap-2 rounded-md bg-primary px-8 py-4 text-center font-semibold text-white transition-all duration-300 hover:bg-primary/90"
           >
