@@ -44,7 +44,7 @@ function TicketSubmit() {
       return;
     }
 
-    if (!/^[A-Za-z\s]+$/.test(ticketSubject)) {
+    if (!/^[A-Za-z\s']+$/.test(ticketSubject)) {
       toast.error("Please enter a valid subject");
       return;
     }

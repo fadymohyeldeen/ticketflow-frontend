@@ -2,11 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaSquarePhone } from "react-icons/fa6";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ function Login() {
         headers: {
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({ email, password }),
       });
 
@@ -25,7 +28,9 @@ function Login() {
       if (!response.ok) {
         throw new Error(`err: ${response.status} ${responseData}`);
       }
+      localStorage.setItem("token", responseData);
       toast.success("Login successfull");
+      navigate("/dashboard");
     } catch {
       toast.error("Login faild!");
     }

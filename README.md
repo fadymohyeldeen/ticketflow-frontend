@@ -1,12 +1,57 @@
-# React + Vite
+# TicketFlow Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern ticket management system built with React and Vite.
 
-Currently, two official plugins are available:
+## Project Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### System Requirements
 
-## Expanding the ESLint configuration
+- Node.js (v16 or higher)
+- npm (v7 or higher)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Dependencies
+
+- React 18.2.0
+- React Router DOM 6.30.0
+- React Hot Toast
+- React Icons
+- Recharts
+- TailwindCSS
+- Vite
+
+## Local Development Setup
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd ticketflow-frontend
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173` by default.
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Login Credentials
+
+For testing purposes, you can use the following credentials:
+
+- **Email:** admin@example.com
+- **Password:** Admin
