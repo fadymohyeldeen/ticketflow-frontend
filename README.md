@@ -44,13 +44,15 @@ cd ticketflow-frontend
 npm install
 ```
 
-3. Start the development server:
+3. Set up environment variables:
+
+   Create a `.env` file in the root directory with the necessary variables.
+
+4. Start the development server:
 
 ```bash
 npm run dev
 ```
-
-The application will be available at `http://localhost:5173` by default.
 
 ## Backend API
 
