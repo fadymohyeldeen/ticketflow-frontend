@@ -14,14 +14,17 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/user/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-        body: JSON.stringify({ email, password }),
-      });
+          body: JSON.stringify({ email, password }),
+        }
+      );
 
       const responseData = await response.text();
 

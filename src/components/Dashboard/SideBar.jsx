@@ -166,7 +166,6 @@ function SideBar({ children }) {
             </nav>
           </div>
 
-          {/* Logo Section - Moved to bottom */}
           <div className="px-4 py-4 border-t border-gray-200">
             <Link to="/" className="group flex items-center justify-center">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 transition-all group-hover:bg-blue-700">

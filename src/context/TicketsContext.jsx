@@ -14,13 +14,15 @@ export const TicketsProvider = ({ children }) => {
           setError("No authentication token found");
           return;
         }
-        // TODO: make base url dynamic (from .env)
-        const response = await fetch("http://localhost:5000/ticket", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/ticket`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (!response.ok) {
           if (response.status === 403) {
@@ -59,13 +61,15 @@ export const TicketsProvider = ({ children }) => {
         setError("No authentication token found");
         return null;
       }
-      // TODO: make base url dynamic (from .env)
-      const response = await fetch(`http://localhost:5000/ticket/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/ticket/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         if (response.status === 404) {
@@ -90,15 +94,17 @@ export const TicketsProvider = ({ children }) => {
         setError("No authentication token found");
         return;
       }
-      // TODO: make base url dynamic (from .env)
-      const response = await fetch(`http://localhost:5000/ticket/${id}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedTicket),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/ticket/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedTicket),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -126,7 +132,6 @@ export const TicketsProvider = ({ children }) => {
         return [];
       }
 
-      // Convert filter object to URL query parameters
       const queryParams = new URLSearchParams();
       Object.entries(filterObject).forEach(([key, value]) => {
         if (value !== undefined && value !== null && value !== "") {
@@ -135,7 +140,7 @@ export const TicketsProvider = ({ children }) => {
       });
 
       const response = await fetch(
-        `http://localhost:5000/ticket/filter?${queryParams}`,
+        `${import.meta.env.VITE_API_BASE_URL}/ticket/filter?${queryParams}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

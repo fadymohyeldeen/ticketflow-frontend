@@ -50,19 +50,22 @@ function TicketSubmit() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/ticket", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          clientName,
-          clientEmail,
-          clientNumber,
-          ticketSubject,
-          ticketMessage,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/ticket`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            clientName,
+            clientEmail,
+            clientNumber,
+            ticketSubject,
+            ticketMessage,
+          }),
+        }
+      );
       const result = await response.json();
       if (!response.ok) {
         throw new Error(`err: ${response.status} ${result}`);
@@ -173,7 +176,7 @@ function TicketSubmit() {
                   <input
                     value={clientNumber}
                     onChange={(e) => setClientNumber(e.target.value)}
-                    type="tel"
+                    type="number"
                     id="clientNumber"
                     name="clientNumber"
                     className="block w-full rounded-lg border-0 bg-white py-2.5 pl-10 pr-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"

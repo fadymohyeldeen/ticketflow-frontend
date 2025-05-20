@@ -62,7 +62,6 @@ const TicketDetail = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        {/* Header with Actions */}
         <div className="flex justify-between items-center mb-6">
           {loading ? (
             <h1 className="text-3xl font-bold text-gray-900">Loading...</h1>
@@ -188,7 +187,6 @@ const TicketDetail = () => {
                   </div>
                 </div>
 
-                {/* Message */}
                 <div className="col-span-2">
                   <p className="text-sm text-gray-500 mb-2">Message</p>
                   <div className="bg-gray-50 rounded-lg p-4">
@@ -198,7 +196,6 @@ const TicketDetail = () => {
               </div>
             </div>
 
-            {/* Comments Section */}
             <div className="bg-white shadow rounded-lg p-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-xl font-semibold">Comments</h2>
@@ -208,7 +205,6 @@ const TicketDetail = () => {
                 </button>
               </div>
               <div className="space-y-4">
-                {/* Comment Item */}
                 <div className="border-b pb-4">
                   <div className="flex items-start space-x-3">
                     <div className="flex-shrink-0">
@@ -234,7 +230,6 @@ const TicketDetail = () => {
             </div>
           </div>
 
-          {/* Right Column - History */}
           <div className="lg:col-span-1">
             <div className="bg-white shadow rounded-lg p-6">
               <div className="flex items-center justify-between mb-4">
@@ -242,7 +237,6 @@ const TicketDetail = () => {
                 <FaHistory className="text-gray-400" />
               </div>
               <div className="space-y-4">
-                {/* History Item */}
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0">
                     <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
@@ -258,7 +252,6 @@ const TicketDetail = () => {
                     </p>
                   </div>
                 </div>
-                {/* Another History Item */}
                 <div className="flex items-start space-x-3">
                   <div className="flex-shrink-0">
                     <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">

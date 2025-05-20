@@ -1,4 +1,4 @@
-# TicketFlow Frontend
+# TicketFlow-Frontend
 
 A modern ticket management system built with React and Vite.
 
@@ -11,20 +11,30 @@ A modern ticket management system built with React and Vite.
 
 ### Dependencies
 
-- React 18.2.0
-- React Router DOM 6.30.0
-- React Hot Toast
-- React Icons
-- Recharts
-- TailwindCSS
-- Vite
+#### Production Dependencies
+
+- React ^18.2.0
+- React DOM ^18.2.0
+- React Router DOM ^6.30.0
+- React Hot Toast ^2.5.2
+- React Toastify ^11.0.5
+- React Icons ^4.12.0
+- Recharts ^2.15.3
+
+#### Development Dependencies
+
+- Vite ^5.1.4
+- TailwindCSS ^3.4.1
+- ESLint ^8.56.0
+- PostCSS ^8.4.35
+- Autoprefixer ^10.4.17
 
 ## Local Development Setup
 
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/fadymohyeldeen/ticketflow-frontend
 cd ticketflow-frontend
 ```
 
@@ -42,12 +52,9 @@ npm run dev
 
 The application will be available at `http://localhost:5173` by default.
 
-## Available Scripts
+## Backend API
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+This frontend application connects to a backend API for ticket management functionality. Make sure the backend service is running and properly configured.
 
 ## Login Credentials
 

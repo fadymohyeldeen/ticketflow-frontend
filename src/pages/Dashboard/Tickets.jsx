@@ -54,12 +54,20 @@ const Tickets = () => {
   };
 
   const processedTickets = useMemo(() => {
-    if (isFiltered) {
-      return filteredResults;
-    }
+    let ticketsToProcess = [];
 
-    return tickets
-      .filter((ticket) => {
+    if (isFiltered) {
+      ticketsToProcess = filteredResults.filter((ticket) => {
+        if (search) {
+          return (
+            ticket.ticketSubject.toLowerCase().includes(search) ||
+            ticket._id.includes(search)
+          );
+        }
+        return true;
+      });
+    } else {
+      ticketsToProcess = tickets.filter((ticket) => {
         if (search) {
           return (
             ticket.ticketSubject.toLowerCase().includes(search) ||
@@ -71,19 +79,21 @@ const Tickets = () => {
         } else {
           return ticket.ticketStatus === filterStatus;
         }
-      })
-      .sort((a, b) => {
-        if (sortBy === "createdAt") {
-          return sortOrder === "asc"
-            ? new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-            : new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-        } else if (sortBy === "updatedAt") {
-          return sortOrder === "asc"
-            ? new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
-            : new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-        }
-        return 0;
       });
+    }
+
+    return ticketsToProcess.sort((a, b) => {
+      if (sortBy === "createdAt") {
+        return sortOrder === "asc"
+          ? new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+          : new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      } else if (sortBy === "updatedAt") {
+        return sortOrder === "asc"
+          ? new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
+          : new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+      }
+      return 0;
+    });
   }, [
     tickets,
     search,
@@ -140,7 +150,6 @@ const Tickets = () => {
             </div>
           </div>
 
-          {/* Quick Filters */}
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => handleFilterByStatus("all")}

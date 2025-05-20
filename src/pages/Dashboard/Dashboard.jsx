@@ -50,26 +50,14 @@ const Dashboard = () => {
       action: "Status Updated",
       from: "Open",
       to: "In Progress",
-      by: "John Doe",
+      by: "Admin Name",
       timestamp: "2 hours ago",
     },
     {
       id: "Test-002",
       action: "New Comment",
-      by: "Jane Smith",
+      by: "Admin Name",
       timestamp: "3 hours ago",
-    },
-    {
-      id: "Test-003",
-      action: "Ticket Resolved",
-      by: "Mike Johnson",
-      timestamp: "5 hours ago",
-    },
-    {
-      id: "Test-003",
-      action: "Ticket Resolved",
-      by: "Mike Johnson",
-      timestamp: "5 hours ago",
     },
   ];
   const handleLogout = () => {
