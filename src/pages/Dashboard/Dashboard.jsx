@@ -60,6 +60,7 @@ const Dashboard = () => {
       timestamp: "3 hours ago",
     },
   ];
+  
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/";

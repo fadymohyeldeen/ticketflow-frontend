@@ -34,6 +34,7 @@ export const TicketsProvider = ({ children }) => {
         }
 
         const data = await response.json();
+
         const formattedTickets = Array.isArray(data)
           ? data.map((ticket) => ({
               ...ticket,

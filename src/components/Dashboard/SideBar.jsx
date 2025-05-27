@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
@@ -16,9 +14,9 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 function SideBar({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const location = useLocation();
+    const location = useLocation();
 
-  const isActive = (path) => location.pathname === path;
+    const isActive = (path) => location.pathname === path;
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);

@@ -28,7 +28,6 @@ const TicketDetail = () => {
       setIsStatusDropdownOpen(false);
       return;
     }
-
     const updatedTicket = {
       ...ticket,
       ticketStatus: newUpdate,

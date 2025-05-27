@@ -54,6 +54,7 @@ const Tickets = () => {
   };
 
   const processedTickets = useMemo(() => {
+    
     let ticketsToProcess = [];
 
     if (isFiltered) {

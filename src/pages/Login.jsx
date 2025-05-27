@@ -26,7 +26,7 @@ function Login() {
         }
       );
 
-      const responseData = await response.text();
+      const responseData = await response.text(); // TODO: understand why .text()
 
       if (!response.ok) {
         throw new Error(`err: ${response.status} ${responseData}`);
