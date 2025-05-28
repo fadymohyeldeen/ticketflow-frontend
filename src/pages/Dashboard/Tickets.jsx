@@ -11,7 +11,7 @@ import {
 
 const Tickets = () => {
   const navigate = useNavigate();
-  const { tickets, filterTickets } = useContext(TicketsContext);
+  const { tickets, filterTickets, loading } = useContext(TicketsContext);
   const [filterStatus, setFilterStatus] = useState("all");
   const [sortBy, setSortBy] = useState("updatedAt");
   const [sortOrder, setSortOrder] = useState("desc");
@@ -54,7 +54,6 @@ const Tickets = () => {
   };
 
   const processedTickets = useMemo(() => {
-    
     let ticketsToProcess = [];
 
     if (isFiltered) {
@@ -81,6 +80,10 @@ const Tickets = () => {
           return ticket.ticketStatus === filterStatus;
         }
       });
+    }
+
+    if (loading) {
+      return <div>Loading tickets...</div>;
     }
 
     return ticketsToProcess.sort((a, b) => {

@@ -5,6 +5,7 @@ export const TicketsContext = createContext();
 export const TicketsProvider = ({ children }) => {
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTickets = async () => {
@@ -47,6 +48,8 @@ export const TicketsProvider = ({ children }) => {
         console.error("Error fetching tickets:", err);
         setError(err.message);
         setTickets([]);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -172,6 +175,7 @@ export const TicketsProvider = ({ children }) => {
         getTicketById,
         updateTicket,
         filterTickets,
+        loading,
       }}
     >
       {children}

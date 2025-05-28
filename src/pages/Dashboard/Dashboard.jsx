@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { TicketsContext } from "../../context/TicketsContext";
 import { Link } from "react-router-dom";
 import {
@@ -15,8 +15,6 @@ import {
   Bar,
   XAxis,
   YAxis,
-  LineChart,
-  Line,
   ResponsiveContainer,
   Tooltip,
   Legend,
@@ -27,6 +25,8 @@ import {
 
 const Dashboard = () => {
   const { tickets = [] } = useContext(TicketsContext);
+  const { loading } = useContext(TicketsContext);
+
   const ticketStatusData = [
     {
       status: "Open",
@@ -60,7 +60,9 @@ const Dashboard = () => {
       timestamp: "3 hours ago",
     },
   ];
-  
+
+  if (loading) return <div>Loading tickets...</div>;
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
