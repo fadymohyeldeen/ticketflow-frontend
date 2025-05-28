@@ -106,6 +106,7 @@ const Tickets = () => {
     sortOrder,
     filteredResults,
     isFiltered,
+    loading,
   ]);
 
   return (
