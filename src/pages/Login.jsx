@@ -63,6 +63,7 @@ function Login() {
           <p className="text-sm text-gray-600 mb-6">
             Sign in to access your dashboard
           </p>
+
           <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5">
             <div>
               <label
@@ -138,6 +139,11 @@ function Login() {
                 Reset Password
               </Link>
             </p>
+            <div className="text-sm text-gray-600 text-center">
+              <p>Test Credentials: </p>
+              <p>Email: admin@example.com</p>
+              <p>Password: Admin</p>
+            </div>
           </form>
         </div>
       </div>
